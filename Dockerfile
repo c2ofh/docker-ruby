@@ -37,12 +37,5 @@ ARG BUNDLER_OPTS=" --without development test"
 # clean up
 RUN apt-get autoremove -y
 
-# add ffmpeg
-ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz  /tmp/
-
-RUN tar -xJf /tmp/ffmpeg-release-amd64-static.tar.xz -C /tmp/ && \
-    mv /tmp/ffmpeg-4.1.3-amd64-static/ff* /usr/local/bin && \
-    rm -rf /tmp/ffmpeg*
-
 # dummy start command
 CMD ["/bin/bash"]
