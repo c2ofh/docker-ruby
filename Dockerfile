@@ -41,7 +41,7 @@ RUN apt-get autoremove -y
 ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz  /tmp/
 
 RUN tar -xJf /tmp/ffmpeg-release-amd64-static.tar.xz -C /tmp/ && \
-    mv /tmp/ffmpeg-4.1.3-amd64-static/ff* /usr/local/bin && \
+    mv /tmp/ffmpeg-4.2-amd64-static/ff* /usr/local/bin && \
     rm -rf /tmp/ffmpeg*
 
 # dummy start command
