@@ -1,4 +1,4 @@
-FROM ruby:2.5.5-slim
+FROM ruby:2.6.3-slim
 LABEL maintainer="admin@code2order.com"
 
 WORKDIR /app
