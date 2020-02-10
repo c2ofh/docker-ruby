@@ -26,7 +26,8 @@ RUN echo "set input-meta on" >> /etc/inputrc && \
 RUN gem install bundler
 
 # install some tools
-RUN apt-get install -y cron build-essential git nodejs imagemagick libpq-dev wget netcat nano yarn
+RUN apt-get install -y cron build-essential git nodejs imagemagick libpq-dev wget netcat nano \
+    npm install --global yarn
 
 # Rails ENV
 ARG RAILS_ENV=production
