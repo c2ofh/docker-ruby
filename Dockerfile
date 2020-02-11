@@ -7,7 +7,7 @@ EXPOSE 3000
 
 # Set the locale
 RUN apt-get update && \
-    apt-get install -y locales
+    apt-get install -yqq locales gnupg
 
 RUN sed -i -e 's/# de_DE.UTF-8 UTF-8/de_DE.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen de_DE.UTF-8
@@ -34,7 +34,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 # install some tools
-RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends cron build-essential git nodejs imagemagick libpq-dev wget netcat nano yarn
+RUN apt-get install -yqq --no-install-recommends cron build-essential git nodejs imagemagick libpq-dev wget netcat nano yarn
 
 # Rails ENV
 ARG RAILS_ENV=production
