@@ -27,10 +27,16 @@ RUN gem install bundler
 
 # Ensure we install an up-to-date version of Node
 # See https://github.com/yarnpkg/yarn/issues/2888
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
 # install some tools
-RUN apt-get install -yqq --no-install-recommends cron build-essential git nodejs imagemagick libpq-dev wget netcat nano yarn
+RUN apt-get install -yqq --no-install-recommends cron build-essential git nodejs imagemagick libpq-dev wget netcat nano
+
+RUN node -v \
+    npm -v
+
+RUN npm install -g yarn \
+    yarn install --check-files
 
 # Rails ENV
 ARG RAILS_ENV=production
