@@ -14,6 +14,10 @@ RUN apk --no-cache add libintl && \
 	cd .. && rm -r musl-locales && \
 	apk del .locale_build
 
+RUN apk add ca-certificates && update-ca-certificates
+RUN apk add --update tzdata
+ENV TZ=Europe/Berlin
+
 ENV LANG=de_DE.UTF-8 \
     LANGUAGE=de_DE:de \
     LC_ALL=de_DE.UTF-8
@@ -21,8 +25,7 @@ ENV LANG=de_DE.UTF-8 \
 RUN echo "set input-meta on" >> /etc/inputrc && \
     echo "set output-meta on" >> /etc/inputrc && \
     echo "set convert-meta off" >> /etc/inputrc && \
-    echo "export LANG=de_DE.utf8" >> /etc/profile && \
-    cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+    echo "export LANG=de_DE.utf8" >> /etc/profile
 
 # install bundler
 RUN gem install bundler
@@ -39,7 +42,7 @@ ARG RAILS_ENV=production
 ARG BUNDLER_OPTS=" --without development test"
 
 # clean up
-#RUN apt-get autoremove -y
+RUN rm -rf /var/cache/apk/*
 
 # add ffmpeg
 ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz  /tmp/
