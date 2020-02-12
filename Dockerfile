@@ -33,8 +33,8 @@ FROM node:13
 RUN node -v \
     npm -v
 
-RUN npm install -g yarn \
-    yarn install --check-files
+RUN npm install -g yarn
+RUN yarn install --check-files
 
 # Rails ENV
 ARG RAILS_ENV=production
