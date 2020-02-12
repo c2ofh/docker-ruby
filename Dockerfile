@@ -25,8 +25,10 @@ RUN echo "set input-meta on" >> /etc/inputrc && \
 # install bundler
 RUN gem install bundler
 
+RUN curl -sL https://deb.nodesource.com/setup_13.x | bash -
+
 # install some tools
-RUN apt-get install -yqq --no-install-recommends cron build-essential git nodejs imagemagick libpq-dev wget netcat nano
+RUN apt-get install -yqq --no-install-recommends cron build-essential git imagemagick libpq-dev wget netcat nano nodejs
 
 RUN node -v \
     npm -v
