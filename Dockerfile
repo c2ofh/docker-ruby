@@ -14,9 +14,6 @@ RUN apk --no-cache add libintl && \
 	cd .. && rm -r musl-locales && \
 	apk del .locale_build
 
-RUN sed -i -e 's/# de_DE.UTF-8 UTF-8/de_DE.UTF-8 UTF-8/' /etc/locale.gen && \
-    locale-gen de_DE.UTF-8
-
 ENV LANG=de_DE.UTF-8 \
     LANGUAGE=de_DE:de \
     LC_ALL=de_DE.UTF-8
