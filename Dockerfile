@@ -1,4 +1,4 @@
-FROM ruby:2.6.5-slim
+FROM ruby:2.6.5-alpine
 LABEL maintainer="admin@code2order.com"
 
 WORKDIR /app
@@ -6,8 +6,7 @@ WORKDIR /app
 EXPOSE 3000
 
 # Set the locale
-RUN apt-get update && \
-    apt-get install -yqq locales
+RUN apk add --update --no-cache locales    
 
 RUN sed -i -e 's/# de_DE.UTF-8 UTF-8/de_DE.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen de_DE.UTF-8
@@ -26,14 +25,8 @@ RUN echo "set input-meta on" >> /etc/inputrc && \
 RUN gem install bundler
 
 # install some tools
-RUN apt-get install -yqq --no-install-recommends cron build-essential git imagemagick libpq-dev wget netcat nano
+RUN apk add --no-cache cron build-essential git imagemagick libpq-dev wget netcat nano nodejs yarn
 
-FROM node:13
-
-RUN node -v \
-    npm -v
-
-RUN npm install -g yarn
 RUN yarn install --check-files
 
 # Rails ENV
