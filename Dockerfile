@@ -7,7 +7,7 @@ EXPOSE 3000
 
 # Set the locale
 RUN apt-get update && \
-    apt-get install -yqq locales gnupg
+    apt-get install -yqq locales
 
 RUN sed -i -e 's/# de_DE.UTF-8 UTF-8/de_DE.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen de_DE.UTF-8
@@ -24,10 +24,6 @@ RUN echo "set input-meta on" >> /etc/inputrc && \
 
 # install bundler
 RUN gem install bundler
-
-# Ensure we install an up-to-date version of Node
-# See https://github.com/yarnpkg/yarn/issues/2888
-RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
 # install some tools
 RUN apt-get install -yqq --no-install-recommends cron build-essential git nodejs imagemagick libpq-dev wget netcat nano
