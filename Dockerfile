@@ -31,9 +31,14 @@ RUN echo "set input-meta on" >> /etc/inputrc && \
 RUN gem install bundler
 
 # install some tools
-RUN apk add --no-cache build-base git imagemagick libpq wget netcat-openbsd nano nodejs yarn
+RUN apk add --no-cache build-base git imagemagick libpq wget netcat-openbsd nano nodejs
 
-RUN yarn install --check-files
+# Install Yarn
+ENV PATH=/root/.yarn/bin:$PATH
+RUN apk add --virtual build-yarn curl && \
+    touch ~/.bashrc && \
+    curl -o- -L https://yarnpkg.com/install.sh | sh && \
+    apk del build-yarn
 
 # Rails ENV
 ARG RAILS_ENV=production
