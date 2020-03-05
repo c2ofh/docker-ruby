@@ -51,6 +51,21 @@ RUN tar -xJf /tmp/ffmpeg-release-amd64-static.tar.xz -C /tmp/ && \
     mv /tmp/ffmpeg-4.2.2-amd64-static/ff* /usr/local/bin && \
     rm -rf /tmp/ffmpeg*
 
+
+RUN printf "#!/usr/bin/env ruby \
+\nAPP_ROOT = File.expand_path('..', __dir__) \
+\nDir.chdir(APP_ROOT) do \
+\n  begin \
+\n    exec 'yarnpkg', *ARGV \
+\n  rescue Errno::ENOENT \
+\n    $stderr.puts 'Yarn executable was not detected in the system.' \
+\n    $stderr.puts 'Download Yarn at https://yarnpkg.com/en/docs/install' \
+\n    exit 1 \
+\n  end \
+\n end" > .bin/yarn.sh
+
+RUN chmod 755 .bin/yarn.sh 
+
 # dummy start command
 CMD ["/bin/bash"]
 
