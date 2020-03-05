@@ -62,9 +62,9 @@ RUN printf "#!/usr/bin/env ruby \
 \n    $stderr.puts 'Download Yarn at https://yarnpkg.com/en/docs/install' \
 \n    exit 1 \
 \n  end \
-\n end" > .bin/yarn.sh
+\n end" > /bin/yarn.sh
 
-RUN chmod 755 .bin/yarn.sh 
+RUN chmod 755 /bin/yarn.sh 
 
 # dummy start command
 CMD ["/bin/bash"]
