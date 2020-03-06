@@ -41,7 +41,7 @@ ARG RAILS_ENV=production
 ARG BUNDLER_OPTS=" --without development test"
 
 # clean up
-# RUN apt-get autoremove -y
+RUN apt-get autoremove -y
 
 # add ffmpeg
 ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz  /tmp/
