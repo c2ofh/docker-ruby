@@ -21,7 +21,7 @@ RUN echo "set input-meta on" >> /etc/inputrc && \
     echo "set convert-meta off" >> /etc/inputrc && \
     echo "export LANG=de_DE.utf8" >> /etc/profile && \
     cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime
-e
+
 # install bundler
 RUN gem install bundler
 
