@@ -1,4 +1,4 @@
-FROM ruby:2.6.6-slim
+FROM ruby:2.7.2-slim
 LABEL maintainer="admin@code2order.com"
 
 WORKDIR /app
@@ -47,7 +47,7 @@ RUN apt-get autoremove -y
 ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz  /tmp/
 
 RUN tar -xJf /tmp/ffmpeg-release-amd64-static.tar.xz -C /tmp/ && \
-    mv /tmp/ffmpeg-4.2.2-amd64-static/ff* /usr/local/bin && \
+    mv /tmp/ffmpeg-4.3.1-amd64-static/ff* /usr/local/bin && \
     rm -rf /tmp/ffmpeg*
 
 # dummy start command
