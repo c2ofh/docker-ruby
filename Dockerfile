@@ -26,7 +26,7 @@ RUN echo "set input-meta on" >> /etc/inputrc && \
 RUN gem install bundler
 
 # install some tools
-RUN apt-get install -y --no-install-recommends git build-essential curl cron libpq-dev imagemagick ghostscript wget netcat nano libfontconfig1 libxrender1
+RUN apt-get install -y --no-install-recommends git build-essential curl cron libpq-dev imagemagick ghostscript wget netcat nano libfontconfig1 libxrender1 shared-mime-info
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y --force-yes --no-install-recommends nodejs
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
