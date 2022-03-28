@@ -26,7 +26,7 @@ RUN echo "set input-meta on" >> /etc/inputrc && \
 RUN gem install bundler
 
 # install some tools
-RUN apt-get install -y --no-install-recommends git build-essential curl cron libpq-dev imagemagick ghostscript wget netcat nano libfontconfig1 libxrender1 shared-mime-info
+RUN apt-get install -y --no-install-recommends git build-essential curl cron libpq-dev imagemagick ghostscript wget netcat nano libfontconfig1 libxrender1 shared-mime-info poppler-utils
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y --force-yes --no-install-recommends nodejs
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
@@ -47,7 +47,7 @@ RUN apt-get autoremove -y
 ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz  /tmp/
 
 RUN tar -xJf /tmp/ffmpeg-release-amd64-static.tar.xz -C /tmp/ && \
-    mv /tmp/ffmpeg-4.4-amd64-static/ff* /usr/local/bin && \
+    mv /tmp/ffmpeg-5.0-amd64-static/ff* /usr/local/bin && \
     rm -rf /tmp/ffmpeg*
 
 # dummy start command
